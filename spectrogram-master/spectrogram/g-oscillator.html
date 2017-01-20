@@ -1,0 +1,219 @@
+<link rel="import" href="./bower_components/polymer/polymer.html">
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
+<polymer-element name="g-oscillator" attributes="log speed">
+  <template>
+  <style>
+    canvas {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <canvas id="freq" 
+      on-mousedown={{onMouseDown}}
+      on-mouseup={{onMouseUp}}
+      on-mousemove={{onMouseMove}}
+      on-mouseout={{onMouseOut}}
+      on-touchstart={{onTouchStart}}
+      on-touchend={{onTouchEnd}}
+      on-touchmove={{onTouchMove}}></canvas>
+  </template>
+  <script>
+// Assumes context is an AudioContext defined outside of this class.
+Polymer('g-oscillator', {
+  gainAmount: 0.2,
+  history: [],
+  log: false,
+  speed: 2,
+
+  fadeTime: 0.01,
+
+  attachedCallback: function() {
+    this.loop();
+  },
+
+  loop: function() {
+    this.width = window.innerWidth;
+    this.height = window.innerHeight;
+
+    this.addHistory(this.lastY);
+    var canvas = this.$.freq;
+    var ctx = canvas.getContext('2d');
+    canvas.width = this.width;
+    canvas.height = this.height;
+
+    var size = 6;
+    var nyquist = context.sampleRate/2;
+
+    for (var i = 0; i < this.history.length; i++) {
+      var y = this.history[i];
+      if (y === null) {
+        continue;
+      }
+      var x = this.width - (this.history.length - i - 1) * this.speed;
+      // TODO(smus): Elimiate fudge factor.
+      ctx.fillStyle = 'red';
+      ctx.fillRect(x - size/2, y - size/2, size, size);
+    }
+
+    if (this.osc_) {
+      // Label the point.
+      var label = this.formatFrequency_(this.lastFreq);
+      ctx.font = '20px Inconsolata'
+      ctx.fillText(label, this.lastX, this.lastY);
+    }
+    requestAnimationFrame(this.loop.bind(this));
+  },
+
+  formatFrequency_: function(freq) {
+    return Math.round(freq) + ' Hz';
+  },
+
+  onMouseDown: function(event) {
+    console.log('md');
+    if (this.osc_) {
+      // There can be only one oscillator.
+      return;
+    }
+    this.updatePointer(event);
+    // Create an oscillator.
+    this.osc_ = this.createOscillator_();
+    this.lastFreq = this.getLastFrequency();
+    this.osc_.frequency.value = this.lastFreq;
+  },
+
+  onMouseUp: function() {
+    console.log('mu');
+    this.deleteOscillator_();
+    this.updatePointer(null);
+    this.lastFreq = null;
+  },
+
+  onMouseMove: function(event) {
+    console.log('mm');
+    if (this.osc_) {
+      this.updatePointer(event);
+      this.lastFreq = this.getLastFrequency();
+      this.osc_.frequency.value = this.lastFreq;
+    }
+  },
+
+  onMouseOut: function(event) {
+    console.log('mo');
+    this.deleteOscillator_();
+    this.updatePointer(null);
+    this.lastFreq = null;
+  },
+
+  onTouchStart: function(event) {
+    event.preventDefault();
+    console.log('ts');
+    if (this.osc_) {
+      return;
+    }
+    this.updatePointer(event);
+    // Create an oscillator.
+    this.osc_ = this.createOscillator_();
+    this.lastFreq = this.getLastFrequency();
+    this.osc_.frequency.value = this.lastFreq;
+  },
+
+  onTouchMove: function(event) {
+    event.preventDefault();
+    console.log('tm');
+    if (this.osc_) {
+      this.updatePointer(event);
+      this.lastFreq = this.getLastFrequency();
+      this.osc_.frequency.value = this.lastFreq;
+    }
+  },
+
+  onTouchEnd: function(event) {
+    event.preventDefault();
+    console.log('te');
+    this.updatePointer(null);
+    this.deleteOscillator_();
+    this.lastFreq = null;
+  },
+
+  updatePointer: function(event) {
+    event = event || {};
+    var type = event.type || '';
+    if (type.indexOf('mouse') == 0) {
+      this.lastX = event.pageX;
+      this.lastY = event.pageY;
+    } else if (type.indexOf('touch') == 0) {
+      this.lastX = event.touches[0].pageX;
+      this.lastY = event.touches[0].pageY;
+    } else {
+      this.lastX = null;
+      this.lastY = null;
+    }
+  },
+  
+  addHistory: function(freq) {
+    if (this.history.length > 100) {
+      this.history.splice(0, 1);
+    }
+    this.history.push(freq);
+  },
+
+  getLastFrequency: function() {
+    var x = this.lastX;
+    var y = this.lastY;
+
+    // Linearly divide the Y axis and assign frequency.
+    var percent = 1 - (y / this.height);
+    var nyquist = context.sampleRate/2;
+    if (this.log) {
+      percent = this.logScale_(percent * 1000, 1000) / 1000;
+    }
+    return percent * nyquist;
+  },
+
+  createOscillator_: function() {
+    // Create a gain node.
+    var gain = context.createGain();
+    gain.gain.value = 0;
+    gain.connect(context.destination);
+    // TODO(smus): Clean this up!
+    this.gain_ = gain;
+
+    // Create an oscillator and connect it through the gain.
+    var osc = context.createOscillator();
+    osc.connect(gain);
+
+    // Start it with a fade-in.
+    gain.gain.linearRampToValueAtTime(this.gainAmount,
+        context.currentTime + this.fadeTime);
+    osc.start(0);
+    return osc;
+  },
+
+  deleteOscillator_: function() {
+    if (this.osc_) {
+      var endTime = context.currentTime + this.fadeTime;
+      this.gain_.gain.linearRampToValueAtTime(0, endTime);
+      this.osc_.stop(endTime);
+      this.osc_ = null;
+    }
+  },
+
+  /**
+   * Given an index and the total number of entries, return the
+   * log-scaled value.
+   */
+  logScale_: function(index, total, opt_base) {
+    var base = opt_base || 2;
+    var logmax = this.logBase(total + 1, base);
+    var exp = logmax * index / total;
+    return Math.pow(base, exp) - 1;
+  },
+
+  logBase: function(val, base) {
+    return Math.log(val) / Math.log(base);
+  },
+});
+  </script>
+</polymer-element>
