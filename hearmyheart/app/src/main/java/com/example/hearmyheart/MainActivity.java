@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_main);
         idx_list = new ArrayList<>();
         title_list = new ArrayList<>();
-        getData("http://13.112.99.216/noticeboard.php");
+        getData("http://13.112.115.242/noticeboard.php");
 
         fnc1_btn = (Button) findViewById(R.id.fnc1_btn);
         fnc2_btn = (Button) findViewById(R.id.fnc2_btn);

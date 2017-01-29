@@ -53,11 +53,13 @@
             android:layout_height="175dp"
             android:layout_gravity="left">
 
-            <ImageView
+            <com.felipecsl.gifimageview.library.GifImageView
+                android:id="@+id/gifImageView"
+                android:onClick="onClick"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/cap2"
-                android:id="@+id/imageView" />
+                android:layout_height="match_parent"/>
         </LinearLayout>
         <LinearLayout
             android:layout_weight="2"
@@ -75,4 +77,11 @@
                 android:id="@+id/surfaceView"/>
         </LinearLayout>
     </LinearLayout>
+    <Button
+        android:id="@+id/btnToggle"
+        android:text="Toggle Animation"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 </LinearLayout>
