@@ -20,12 +20,16 @@ public class function2 extends Activity {
     Button camera_btn,btn1,btn2;
     TextView tv;
     ArrayList<String> list;
+    ArrayList<String> title;
+    int num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         list = (ArrayList<String>) getIntent().getSerializableExtra("idx");
+        title = (ArrayList<String>) getIntent().getSerializableExtra("title");
+        num = Integer.parseInt(list.get(0));
 
         setContentView(R.layout.activity_function1);
         btn1 = (Button) findViewById(R.id.prev_btn);
@@ -40,13 +44,19 @@ public class function2 extends Activity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tv.setText(list.get(0));
+                if(num > 0) {
+                    num--;
+                    tv.setText(title.get(num));
+                }
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tv.setText(list.get(1));
+                if(num < list.size()-1) {
+                    num++;
+                    tv.setText(title.get(num));
+                }
             }
         });
 

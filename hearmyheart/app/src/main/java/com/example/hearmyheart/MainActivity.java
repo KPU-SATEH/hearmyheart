@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     HashMap<String, String> bbs;
 
     ArrayList<String> idx_list; // 키값 게시글을 구분하기 위하여 따로 저장
+    ArrayList<String> title_list;
     ArrayList<String> password_list; // 패스워드값 저장
 
     Button fnc1_btn,fnc2_btn;
@@ -46,7 +47,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         idx_list = new ArrayList<>();
-        getData("http://13.112.113.155/noticeboard.php");
+        title_list = new ArrayList<>();
+        getData("http://13.112.99.216/noticeboard.php");
 
         fnc1_btn = (Button) findViewById(R.id.fnc1_btn);
         fnc2_btn = (Button) findViewById(R.id.fnc2_btn);
@@ -65,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),function2.class);
                 intent.putExtra("idx",idx_list);
+                intent.putExtra("title",title_list);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
             }
@@ -123,8 +126,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             {
                 JSONObject c = board.getJSONObject(i);
                 String idx = c.getString(TAG_IDX);
-                /*
                 String title = c.getString(TAG_TITLE);
+                /*
                 String category = c.getString(TAG_CATEGORY);
                 String view = c.getString(TAG_VIEW);
                 String date = c.getString(TAG_DATE);
@@ -135,6 +138,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 */
 
                 idx_list.add(idx); // 키값은 따로 저장
+                title_list.add(title);
                /*
                password_list.add(password); // 패스워드 값 따로 저장
 
