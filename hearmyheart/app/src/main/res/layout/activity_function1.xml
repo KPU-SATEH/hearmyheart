@@ -27,6 +27,13 @@
             android:text="text" />
         <Button
             android:layout_weight="1"
+            android:id="@+id/btnToggle"
+            android:text="Animation"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_weight="1"
             android:id="@+id/button1"
             android:text="camera"
             android:layout_width="wrap_content"
@@ -45,6 +52,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:orientation="vertical"
             android:layout_weight="2"
             android:background="#000000"
             android:layout_marginRight="20dp"
@@ -60,8 +68,10 @@
                 android:scaleType="fitCenter"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+
         </LinearLayout>
         <LinearLayout
+            android:orientation="vertical"
             android:layout_weight="2"
             android:background="#000000"
             android:layout_marginRight="20dp"
@@ -77,11 +87,45 @@
                 android:id="@+id/surfaceView"/>
         </LinearLayout>
     </LinearLayout>
-    <Button
-        android:id="@+id/btnToggle"
-        android:text="Toggle Animation"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_weight="2"
+            android:background="#ffffff"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left">
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:max="650"
+            android:layout_marginTop="64dp" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_weight="2"
+            android:background="#ffffff"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="left">
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:max="500"
+                android:layout_marginTop="64dp" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>
