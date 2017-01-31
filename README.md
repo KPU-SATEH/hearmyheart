@@ -1,7 +1,7 @@
 # 『언어장애인을 위한 발음교정 어플리케이션』 (Pronunciation correctness for the Speech disabled)
 
 
-이 저장소는 『언어장애인을 위한 발음교정 어플리케이션 (Pronunciation correctness for the Speech disabled)』(내마음이들리니, 2017)의 지원 사이트입니다.
+이 저장소는 『언어장애인을 위한 발음교정 어플리케이션 (Pronunciation correctness for the Speech disabled)』(내마음이들리니, 2017)의 사이트입니다.
 
 
 ## 내마음이들리니
@@ -23,6 +23,7 @@ Link: [hearmyheart][hearmyheartlink]
 
 
 ## TOOL
+내마음이들리니에서 현재 사용하고 있는 TOOL 목록입니다.
 
 * 안드로이드 스튜디오
 * 아마존 웹 서비스
