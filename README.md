@@ -18,7 +18,7 @@
 
 구글 Polymer 기반의 웹 컴포넌트이므로 반드시 *Chrome*으로 실행하시기 바랍니다. <BR>
 Link: [hearmyheart][hearmyheartlink]
-[hearmyheartlink]: http://52.78.155.88/home.html/ "Go hearmyheart"
+[hearmyheartlink]: http://52.78.155.88/home.html "Go hearmyheart"
 
 
 
