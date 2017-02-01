@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Function3-2</string>
+    <string-array name="category_array">
+        <item>선택하세요</item>
+        <item>교통</item>
+        <item>의식주</item>
+        <item>장소</item>
+        <item>기타</item>
+    </string-array>>
+</resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:orientation="vertical" android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="view"
+    android:id="@+id/view"
+    android:layout_gravity="center_horizontal"
+    android:onClick="post"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="기타"
+        android:id="@+id/etc_button"
+        android:layout_gravity="center_horizontal"
+        android:onClick="etc"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="교통"
+        android:id="@+id/transport_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="transport"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="의식주"
+        android:id="@+id/fcs_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="fcs"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="장소"
+        android:id="@+id/place_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="location"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="best"
+        android:id="@+id/best_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="best"/>
+</LinearLayout>
