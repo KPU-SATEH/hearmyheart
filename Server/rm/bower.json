@@ -1,0 +1,20 @@
+{
+  "name": "recorderjs",
+  "description": "A plugin for recording/exporting the output of Web Audio API nodes",
+  "main": "lib/index.js",
+  "authors": [
+    "Ahneunjeong <jennyo0o@naver.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/KPU-SATEH/hearmyheart",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.7.1"
+  }
+}

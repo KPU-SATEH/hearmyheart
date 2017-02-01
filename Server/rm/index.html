@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Audio</title>
+  <style type='text/css'>
+    ul { list-style: none; }
+    #recordingslist audio { display: block; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>Web Audio Recorder</h1>
+
+  <p>구글 Chrome에서만 동작합니다.</p>
+  <p>실행 하기 전, 마이크를 확인해주세요.</p>
+
+  <button onclick="startRecording(this);">녹음</button>
+  <button onclick="stopRecording(this);" disabled>중지</button>
+  
+  <h2>Recordings</h2>
+  <ul id="recordingslist"></ul>
+  
+  <h2>Log</h2>
+  <pre id="log"></pre>
+
+  <script>
+  if (navigator.webkitGetUserMedia) {
+  navigator.webkitGetUserMedia( 
+    // Desired stream parameters
+    { 
+      audio: true,
+      video: true
+    },
+    // Callback if success
+    function(stream) {
+      console.log('Stream:', stream);
+    },
+    // Callback if error
+    function(error) {
+      console.log('Error:', error);
+    }
+  );} else {
+  console.log('navigator.webkitGetUserMedia not supported. Are you using latest Chrome/Chromium?');
+}
+  function __log(e, data) {
+    log.innerHTML += "\n" + e + " " + (data || '');
+  }
+
+  var audio_context;
+  var recorder;
+
+  function startUserMedia(stream) {
+    var input = audio_context.createMediaStreamSource(stream);
+    __log('Media stream created.');
+    
+    recorder = new Recorder(input);
+    __log('Recorder initialised.');
+  }
+
+  function startRecording(button) {
+    recorder && recorder.record();
+    button.disabled = true;
+    button.nextElementSibling.disabled = false;
+    __log('Recording...');
+  }
+
+  function stopRecording(button) {
+    recorder && recorder.stop();
+    button.disabled = true;
+    button.previousElementSibling.disabled = false;
+    __log('Stopped recording.');
+  
+    createDownloadLink();
+    
+    recorder.clear();
+  }
+
+  function createDownloadLink() {
+    recorder && recorder.exportWAV(function(blob) {
+      var url = URL.createObjectURL(blob);
+      var li = document.createElement('li');
+      var au = document.createElement('audio');
+      var hf = document.createElement('a');
+      
+      au.controls = true;
+      au.src = url;
+      hf.href = url;
+      hf.download = new Date().toISOString() + '.wav';
+      hf.innerHTML = hf.download;
+      li.appendChild(au);
+      li.appendChild(hf);
+      recordingslist.appendChild(li);
+    });
+  }
+
+  window.onload = function init() {
+    try {
+  
+      window.AudioContext = window.AudioContext || window.webkitAudioContext;
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+      window.URL = window.URL || window.webkitURL;
+      
+      audio_context = new AudioContext;
+      __log('Audio context set up.');
+      __log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+    } catch (e) {
+      alert('No web audio support in this browser!');
+    }
+
+	
+
+
+	
+	
+    navigator.getUserMedia({audio: true}, startUserMedia, function(e) {
+	 //var microphone = context.createMediaStreamSource(e);
+	 // microphone.connect();
+      __log('No live audio input: ' + e);
+    });
+  };
+
+  </script>
+
+  <script src="../dist/recorder.js"></script>
+  <script src="../lib/index.js"></script>
+  <script src="../lib/recorder.js"></script>
+  <script src="../src/index.js"></script>
+  <script src="../src/recorder.js"></script>
+</body>
+</html>
