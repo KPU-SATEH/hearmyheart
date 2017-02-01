@@ -43,17 +43,20 @@ Link: [hearmyheart][hearmyheartlink]
 ## 파일 구성
 
 |폴더 이름 |설명                         |
-|:--        |:--                          |
-|appl     |어플리케이션 소스 코드 |
-|document       |문서  |
-|hearmyheart        ||
-|Hearmyheart_STT       |STT 소스 코드 |
-|php     | |
-|php code    |php  소스 코드 |
-|spectrogram |스펙트로그램 소스 코드 |
-
-
-
+|:--          |:--                      |
+|Function1    |기능1 소스코드            |
+|Function3-2  |문서                     |
+|Function3    |기능3 소스코드            |
+|GifImageView |                         |
+|Image        |이미지 업로드 소스코드     |
+|STT          |STT 소스코드              |
+|Server       |서버 소스코드             |
+|Viedeo       |비디오 업로드 소스코드     |
+|appl         |어플리케이션              |
+|document     |문서                     |
+|hearmyheart  |stick_guage + function1 소스코드 |
+|php code     |비디오 업로드 php 소스코드 |
+|sitck_gauge  |                         |
 
 
 
