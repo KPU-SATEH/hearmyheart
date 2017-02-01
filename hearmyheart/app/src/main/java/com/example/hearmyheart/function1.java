@@ -18,6 +18,7 @@ import com.felipecsl.gifimageview.library.GifImageView;
 import java.util.ArrayList;
 
 public class function1 extends Activity implements Runnable{
+    private SideFaceDialog mSideFaceDialog;
     ProgressBar progressBar1,progressBar2;
     int progress=0;
     Thread thread;
@@ -63,6 +64,7 @@ public class function1 extends Activity implements Runnable{
 
         gifImageView = (GifImageView) findViewById(R.id.gifImageView);
         progressBar1.setProgress(0);
+        tv.setText(title.get(0));
 
 
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +83,7 @@ public class function1 extends Activity implements Runnable{
                         Log.d(TAG, "GIF width is " + gifImageView.getGifWidth());
                         Log.d(TAG, "GIF height is " + gifImageView.getGifHeight());
                     }
-                }.execute("http://13.112.10.21/test"+idx.get(0)+".gif");
+                }.execute("http://13.112.134.194/test"+idx.get(0)+".gif");
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
@@ -101,7 +103,7 @@ public class function1 extends Activity implements Runnable{
                         Log.d(TAG, "GIF width is " + gifImageView.getGifWidth());
                         Log.d(TAG, "GIF height is " + gifImageView.getGifHeight());
                     }
-                }.execute("http://13.112.10.21/test"+idx.get(1)+".gif");
+                }.execute("http://13.112.134.194/test"+idx.get(1)+".gif");
             }
         });
 
@@ -187,6 +189,35 @@ public class function1 extends Activity implements Runnable{
         public void surfaceDestroyed(SurfaceHolder holder) {
             camera.release();
             camera = null;
+        }
+    };
+
+    public void onClickView(View v){
+        switch (v.getId()) {
+            case R.id.btn_side:
+                mSideFaceDialog = new SideFaceDialog(this,
+                        "8월의 크리스마스!!",
+                        "영화보러가자~!!!",
+                        leftClickListener,
+                        rightClickListener);
+                mSideFaceDialog.show();
+                break;
+        }
+    }
+
+    private View.OnClickListener leftClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getApplicationContext(), "왼쪽버튼 Click!!",
+                    Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    private View.OnClickListener rightClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(getApplicationContext(), "오른쪽버튼 Click!!",
+                    Toast.LENGTH_SHORT).show();
         }
     };
 
