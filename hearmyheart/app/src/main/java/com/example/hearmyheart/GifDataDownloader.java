@@ -1,11 +1,9 @@
+/*
 package com.example.hearmyheart;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 public class GifDataDownloader extends AsyncTask<String, Void, byte[]> {
-    private static final String TAG = "GifDataDownloader";
-
     @Override protected byte[] doInBackground(final String... params) {
         final String gifUrl = params[0];
 
@@ -15,8 +13,9 @@ public class GifDataDownloader extends AsyncTask<String, Void, byte[]> {
         try {
             return ByteArrayHttpClient.get(gifUrl);
         } catch (OutOfMemoryError e) {
-            Log.e(TAG, "GifDecode OOM: " + gifUrl, e);
             return null;
         }
     }
 }
+
+*/

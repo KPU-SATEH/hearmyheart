@@ -3,7 +3,6 @@ package com.example.hearmyheart;
 import android.app.Activity;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -38,6 +37,7 @@ public class function1 extends Activity implements Runnable{
     ArrayList<String> title;
     int num;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,6 +45,7 @@ public class function1 extends Activity implements Runnable{
         idx = (ArrayList<String>) getIntent().getSerializableExtra("idx");
         title = (ArrayList<String>) getIntent().getSerializableExtra("title");
         num = Integer.parseInt(idx.get(0));
+
 
         setContentView(R.layout.activity_function1);
 
@@ -70,40 +71,42 @@ public class function1 extends Activity implements Runnable{
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gifImageView.clear();
                 stopped = false;
                 progressBar1.setProgress(0);
-                gifImageView.stopAnimation();
+                progress = 0;
                 if(num > 0) {
                     num--;
                     tv.setText(title.get(num));
                 }
-                new GifDataDownloader() {
+                /*new GifDataDownloader() {
                     @Override protected void onPostExecute(final byte[] bytes) {
                         gifImageView.setBytes(bytes);
-                        Log.d(TAG, "GIF width is " + gifImageView.getGifWidth());
-                        Log.d(TAG, "GIF height is " + gifImageView.getGifHeight());
+                        Toast.makeText(function1.this, "complete", Toast.LENGTH_SHORT).show();
                     }
-                }.execute("http://13.112.134.194/test"+idx.get(0)+".gif");
+                }.execute("http://13.112.211.84/test"+idx.get(0)+".gif");
+                */
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                gifImageView.clear();
                 stopped = false;
                 progressBar1.setProgress(0);
-                gifImageView.stopAnimation();
+                progress = 0;
                 if(num < idx.size()-1) {
                     num++;
                     tv.setText(title.get(num));
                 }
-
+                /*
                 new GifDataDownloader() {
                     @Override protected void onPostExecute(final byte[] bytes) {
                         gifImageView.setBytes(bytes);
-                        Log.d(TAG, "GIF width is " + gifImageView.getGifWidth());
-                        Log.d(TAG, "GIF height is " + gifImageView.getGifHeight());
+                        Toast.makeText(function1.this, "complete", Toast.LENGTH_SHORT).show();
                     }
-                }.execute("http://13.112.134.194/test"+idx.get(1)+".gif");
+                }.execute("http://13.112.211.84/test"+idx.get(1)+".gif");
+                */
             }
         });
 

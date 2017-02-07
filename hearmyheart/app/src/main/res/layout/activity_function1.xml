@@ -27,13 +27,6 @@
             android:text="text" />
         <Button
             android:layout_weight="1"
-            android:id="@+id/btnToggle"
-            android:text="Animation"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <Button
-            android:layout_weight="1"
             android:id="@+id/button1"
             android:text="camera"
             android:layout_width="wrap_content"
@@ -126,11 +119,26 @@
                 android:max="650"/>
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:text="side"
-        android:onClick="onClickView"
-        android:id="@+id/btn_side"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:text="side"
+            android:onClick="onClickView"
+            android:id="@+id/btn_side"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btnToggle"
+            android:text="Animation"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/clear"
+            android:text="clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </LinearLayout>

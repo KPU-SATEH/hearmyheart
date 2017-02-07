@@ -17,7 +17,6 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
     String myJSON;
@@ -33,8 +32,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     private static final String TAG_GOOD ="good";
 
     JSONArray board = null;
-    ArrayList<HashMap<String, String>> boardList; // 게시판 내용을 담을 해쉬맵 배열리스트
-    HashMap<String, String> bbs;
 
     ArrayList<String> idx_list; // 키값 게시글을 구분하기 위하여 따로 저장
     ArrayList<String> title_list;
@@ -48,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         setContentView(R.layout.activity_main);
         idx_list = new ArrayList<>();
         title_list = new ArrayList<>();
-        getData("http://13.112.134.194/noticeboard.php");
+        getData("http://13.112.211.84/noticeboard.php");
 
         fnc1_btn = (Button) findViewById(R.id.fnc1_btn);
         fnc2_btn = (Button) findViewById(R.id.fnc2_btn);
