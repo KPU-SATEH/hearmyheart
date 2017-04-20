@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="view"
+        android:textSize="20dp"
+        android:id="@+id/view"
+        android:layout_gravity="center_horizontal"
+        android:onClick="post"
+        android:layout_weight="0.2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="best"
+        android:textSize="20dp"
+        android:id="@+id/best_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="best"
+        android:layout_weight="0.2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="교통"
+        android:textSize="20dp"
+        android:id="@+id/transport_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="transport"
+        android:layout_weight="0.2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="의식주"
+        android:textSize="20dp"
+        android:id="@+id/fcs_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="fcs"
+        android:layout_weight="0.2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="장소"
+        android:textSize="20dp"
+        android:id="@+id/place_btn"
+        android:layout_gravity="center_horizontal"
+        android:onClick="location"
+        android:layout_weight="0.2"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="기타"
+        android:textSize="20dp"
+        android:id="@+id/etc_button"
+        android:layout_gravity="center_horizontal"
+        android:onClick="etc"
+        android:layout_weight="0.2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <Button
+        android:text="HOME"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/home"
+        android:layout_weight="0.2" />
+
+    <Button
+        android:text="WRITE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/write"
+        android:layout_weight="0.2" />
+    </LinearLayout>
+</LinearLayout>

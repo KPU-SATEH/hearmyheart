@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="200dp">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="50dp">
+
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:layout_gravity="right">
+
+                <Button
+                    android:id="@+id/fnc1_btn"
+                    android:text="Practice"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginLeft="50dp"
+                android:layout_width="200dp"
+                android:layout_height="150dp"
+                android:layout_gravity="right">
+
+                <Button
+                    android:id="@+id/fnc2_btn"
+                    android:text="WORDPRACTICE"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="210dp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_width="200dp"
+            android:layout_height="150dp">
+
+            <Button
+                android:id="@+id/fnc3_btn"
+                android:text="BOARD"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="50dp"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_gravity="right">
+
+            <Button
+                android:id="@+id/fnc4_btn"
+                android:text="MANUAL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
